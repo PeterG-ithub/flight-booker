@@ -1,0 +1,6 @@
+<h1>Hello there</h1>
+<%= form_with url: "/flights", method: :get do |form| %>
+  <%= form.search_field :search%>
+
+  <%= form.submit "Search"%>
+<% end %>
