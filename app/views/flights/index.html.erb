@@ -1,7 +1,14 @@
 <h1>Hello there</h1>
 <%= form_with url: "/flights", method: :get do |form| %>
-  <%= form.search_field :search%>
-  <%= form.select(:departure_code, @departure_airports) %>
-  <%= form.select(:arrival_code, @arrival_airports) %>
-  <%= form.submit "Search"%>
+  <%= form.select(:departure_airport, @departure_airports, :include_blank => true) %>
+  <%= form.select(:arrival_airport, @arrival_airports, :include_blank => true) %>
+  <%= form.select(:departure_datetime, @flight_dates, :include_blank => true) %>
+  <%= form.select(:num_tickets, [*1..4]) %>
+  <%= form.submit "Search"%><br>
+  <% @flights.map do |f| %>
+    Departure Airport:<%= f.departure_airport.code %>
+    Arrival Airport:<%= f.arrival_airport.code %>
+    Date: <%= f.departure_datetime %><br>
+    <% end %>
+  <%= params[:departure_datetime]%>
 <% end %>
