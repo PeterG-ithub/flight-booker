@@ -5,10 +5,13 @@
   <%= form.select(:departure_datetime, @flight_dates, :include_blank => true) %>
   <%= form.select(:num_tickets, [*1..4]) %>
   <%= form.submit "Search"%><br>
+<% end %>
+
+<%= form_with url: "/bookings/new", method: :get do |form| %>
   <% @flights.map do |f| %>
     Departure Airport:<%= f.departure_airport.code %>
     Arrival Airport:<%= f.arrival_airport.code %>
-    Date: <%= f.departure_datetime %><br>
-    <% end %>
-  <%= params[:departure_datetime]%>
+    Date: <%= f.departure_datetime %>
+    <%= form.submit "Select"%><br>
+  <% end %>
 <% end %>
