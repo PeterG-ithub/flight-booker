@@ -3,3 +3,6 @@
 
 # Todo
 - Refactor Active Record Queries to reduce number of queries run on the database
+
+# Issues
+- Date picker doesnt work
