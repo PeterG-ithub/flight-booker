@@ -3,5 +3,5 @@ class Flight < ApplicationRecord
   belongs_to :arrival_airport, class_name: 'Airport'
   validates :duration, :departure_datetime, presence: true
   has_many :bookings
-  accepts_nested_attributes_for :bookings
+  has_many :passengers
 end

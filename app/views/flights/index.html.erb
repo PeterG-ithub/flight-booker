@@ -7,7 +7,7 @@
   <%= form.submit "Search"%><br>
 <% end %>
 <% @flights.each do |f| %>
-  <%= form_with url: "/bookings/new", method: :get, scope: :bookings do |form| %>
+  <%= form_with url: "/bookings/new", method: :get do |form| %>
     Departure Airport: <%= f.departure_airport.code %>
     Arrival Airport: <%= f.arrival_airport.code %>
     Date: <%= f.departure_datetime %>
