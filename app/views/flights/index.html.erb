@@ -6,12 +6,14 @@
   <%= form.select(:num_tickets, [*1..4]) %>
   <%= form.submit "Search"%><br>
 <% end %>
-
-<%= form_with url: "/bookings/new", method: :get do |form| %>
-  <% @flights.map do |f| %>
-    Departure Airport:<%= f.departure_airport.code %>
-    Arrival Airport:<%= f.arrival_airport.code %>
+<% @flights.each do |f| %>
+  <%= form_with url: "/bookings/new", method: :get, scope: :bookings do |form| %>
+    Departure Airport: <%= f.departure_airport.code %>
+    Arrival Airport: <%= f.arrival_airport.code %>
     Date: <%= f.departure_datetime %>
-    <%= form.submit "Select"%><br>
+    <%= form.hidden_field :num_tickets, value: params[:num_tickets] %>
+    <%= form.hidden_field :flight_id, value: f.id %>
+    
+    <%= form.submit "Select" %><br>
   <% end %>
 <% end %>
