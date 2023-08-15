@@ -1,13 +1,11 @@
 <h1>Hello there!</h1>
 <p>Number of Tickets: <%= @num_tickets %></p>
 <p>Flight ID : <%= @flight_id %></p>
-
-<%= form_with model: @booking do |f| %>
-  <% @num_tickets.times do %>
+<%= form_with model: @booking do |f| %> 
+  <%= f.hidden_field :flight_id, value: @flight_id%>
     <%= f.fields_for :passengers do |sub_form| %>
       Name: <%= sub_form.text_field :name %>
       Email: <%= sub_form.text_field :email %> <br>
-    <% end %>
   <% end %>
   <%= f.submit %>
 <% end %>
