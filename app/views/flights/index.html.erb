@@ -6,8 +6,9 @@
   <%= form.select(:num_tickets, [*1..4]) %>
   <%= form.submit "Search"%><br>
 <% end %>
+<%= params[:num_tickets] %>
 <% @flights.each do |f| %>
-  <%= form_with url: "/bookings/new", method: :get do |form| %>
+  <%= form_with url: "/bookings/new", method: :get, scope: :bookings do |form| %>
     Departure Airport: <%= f.departure_airport.code %>
     Arrival Airport: <%= f.arrival_airport.code %>
     Date: <%= f.departure_datetime %>
