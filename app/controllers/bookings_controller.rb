@@ -9,6 +9,9 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(bookings_param)
     if @booking.save
+      @booking.passengers.each do |passenger|
+        PassengerMailer.with(passenger: passenger).booking_confirmation.deliver_now
+      end
       redirect_to root_path
     else
       puts @booking.errors.full_messages
